@@ -44,8 +44,7 @@ function Home() {
 
       <div>
         <button className="btn btn-danger" type="button" id="click-me" onClick={coreButton}>
-          {' '}
-          {jokeButton}{' '}
+          {jokeButton}
         </button>
         <hr />
 
