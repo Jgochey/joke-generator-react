@@ -6,6 +6,7 @@ function Home() {
   const [newJoke, setNewJoke] = useState({});
   const [jokeButton, setJokeButton] = useState('Get a Joke');
   const [hideDelivery, setHideDelivery] = useState(true);
+  const [jokeStatus, setJokeStatus] = useState(false);
 
   const [jokeSetup, setJokeSetup] = useState('');
   const [jokeDelivery, setJokeDelivery] = useState('');
@@ -17,16 +18,21 @@ function Home() {
   };
 
   const coreButton = () => {
-    if (newJoke === true && hideDelivery === true) {
+    if (jokeStatus === false && hideDelivery === true) {
+      fetchJoke();
       setJokeButton('Get punchline');
       setJokeSetup(newJoke.setup);
-      setHideDelivery(false);
-    } else if (newJoke === true && hideDelivery === false) {
+      setJokeStatus(true);
+    } else if (jokeStatus === true && hideDelivery === true) {
       setJokeDelivery(newJoke.delivery);
+      setHideDelivery(false);
+    } else if (jokeStatus === true && hideDelivery === false) {
       setJokeButton('Get another joke');
-    } else {
-      fetchJoke();
+      setJokeStatus(false);
       setHideDelivery(true);
+      setJokeDelivery('');
+    } else {
+      console.log('Uh oh.');
     }
   };
 
