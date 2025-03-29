@@ -17,6 +17,18 @@ function Home() {
   };
 
   const coreButton = () => {
+    if (!jokeStatus && hideDelivery) {
+      fetchJoke();
+      setJokeButton('Get punchline');
+      setJokeStatus(true);
+    } else if (jokeStatus && hideDelivery) {
+      setHideDelivery(false);
+      setJokeButton('Get another joke');
+    } else if (jokeStatus === true && hideDelivery === false) {
+      setHideDelivery(true);
+      fetchJoke();
+      setJokeButton('Get punchline');
+      setJokeStatus(true);
     }
   };
 
